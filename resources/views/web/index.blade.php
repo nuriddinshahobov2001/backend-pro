@@ -1,19 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    Web - index
-        {{ $name .  ' - '. $title }}
-    @foreach($studentsList as $student)
-        <h1>ID: {{ $student['id'] }}</h1>
-        <h1>NAME: {{ $student['name'] }}</h1>
-    @endforeach
+@extends('web.layouts.app-layouts')
 
-</body>
-</html>
+@section('title', 'Index')
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="d-flex justify-content-end mt-2">
+                <a href="{{ route('create-new-user') }}" class="btn btn-outline-primary">Create a new user</a>
+            </div>
+
+            @foreach($studentsList as $student)
+                <div class="col-4 my-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1>ID : {{ $student->id }}</h1>
+                        </div>
+                        <div class="card-body">
+                            <h6>Student name : {{ $student->name }}</h6>
+                            <p>Student email : {{ $student->email }}</p>
+                            <span class="badge bg-primary">{{ $student->created_at->format('d-m-Y H:i:m')    }}</span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end gap-2">
+                            <button class="btn btn-primary">Изменить</button>
+                            <button class="btn btn-danger">Удалить</button>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+@endsection
+
