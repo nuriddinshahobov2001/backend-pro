@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,8 +30,9 @@ class IndexController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store1(Request $request)
+    public function store1(CreateUserRequest $request)
     {
+        $data = $request->validated();
         User::query()->create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
