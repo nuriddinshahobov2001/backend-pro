@@ -14,8 +14,8 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $studentsList = User::query()->select('id', 'name', 'email', 'created_at', 'updated_at')->orderBy('created_at', 'desc')->get();
-        return view('web.index', compact('studentsList'));
+        $users = User::query()->select('id', 'name', 'email', 'created_at', 'updated_at')->orderBy('created_at', 'desc')->get();
+        return view('web.index', compact('users'));
     }
 
     /**
