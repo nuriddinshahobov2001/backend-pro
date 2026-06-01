@@ -14,6 +14,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .login-form {
             width: 100%;
             max-width: 400px;
@@ -29,16 +30,24 @@
         <div class="card-body">
 
             <h3 class="card-title text-center mb-4 fw-normal">Вход в панель</h3>
-
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        {{ $error }}
+                    @endforeach
+                </div>
+            @endif
             <form action="{{ route('admin.login') }}" method="POST">
                 @csrf
                 <div class="form-floating mb-3">
-                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <input type="email" name="email" class="form-control" id="floatingInput"
+                           placeholder="name@example.com" required>
                     <label for="floatingInput">Email адрес</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Пароль" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword"
+                           placeholder="Пароль" required>
                     <label for="floatingPassword">Пароль</label>
                 </div>
 

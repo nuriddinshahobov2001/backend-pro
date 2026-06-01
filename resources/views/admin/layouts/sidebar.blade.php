@@ -1,7 +1,7 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white">
     <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <i class="bi bi-shield-shaded me-2 fs-4"></i>
-        <span class="fs-4">Цитадель</span>
+        <span class="fs-4">Admin Panel</span>
     </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -28,13 +28,21 @@
     </ul>
     <hr>
     <div class="dropdown">
-        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <strong><i class="bi bi-person-crown me-2"></i>Мой Король</strong>
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+           data-bs-toggle="dropdown" aria-expanded="false">
+            <strong><i class="bi bi-person-crown me-2"></i>{{ auth()->user()->name }}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
             <li><a class="dropdown-item" href="#">Профиль</a></li>
-            <li><hr class="dropdown-content-divider"></li>
-            <li><a class="dropdown-item" href="#">Выйти из тени</a></li>
+            <li>
+                <hr class="dropdown-content-divider">
+            </li>
+            <li>
+                <form action="{{ route('admin.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item">Выйти</button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
